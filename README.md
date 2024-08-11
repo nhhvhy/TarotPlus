@@ -18,7 +18,6 @@
 <li><h3 style="display:inline"><b>Fate</b></h3>
 &nbsp;&nbsp;Duplicates a random playing card from your deck.
 </li>
-</ul>
 
 <li><h3 style="display:inline"><b>Entropy</b></h3>
 &nbsp;&nbsp;1 in 5 chance to create a random Spectral card when used.
