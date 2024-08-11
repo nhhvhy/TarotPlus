@@ -15,8 +15,13 @@
 &nbsp;&nbsp;Gives an extra hand in the current round.
 <i style="font-size:10px; font-weight:300">&nbsp;&nbsp;&nbsp;Applies to the next round if not used in play</i></li>
 
-<li><h3 style="display:inline"><b>Ice</b></h3>
+<li><h3 style="display:inline"><b>Fate</b></h3>
 &nbsp;&nbsp;Duplicates a random playing card from your deck.
+</li>
+</ul>
+
+<li><h3 style="display:inline"><b>Entropy</b></h3>
+&nbsp;&nbsp;1 in 5 chance to create a random Spectral card when used.
 </li>
 </ul>
 
