@@ -1,6 +1,6 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: Tarot+
---- MOD_ID: TarotPlus
+--- MOD_ID: tarotplus
 --- PREFIX: tarotplus
 --- MOD_AUTHOR: [nhhvhy]
 --- MOD_DESCRIPTION: more tarot == more better
@@ -109,6 +109,63 @@ SMODS.Consumable {
                     center = G.P_CENTERS.c_base}, G.deck, nil, nil, {G.C.SECONDARY_SET.Enhanced})
                 return true
             end}))
+        return true
+        end
+}
+
+-- Entropy Tarot
+SMODS.Consumable {
+    atlas = 'Consumables',
+    key = 'entropy',
+    set = 'Tarot',
+    discovered = true,
+    pos = { x = 0, y = 0 },
+    edition = {negative = false},
+    config = {chance = 5},
+    loc_vars = function(self, card)
+        return {vars = {G.GAME.probabilities.normal, self.config.chance}}
+    end,
+    loc_txt = {
+        ['en-us'] = {
+            name = 'Entropy',
+            text = {"{C:green}#1# in #2#{} chance to",
+                    "create a random",
+                    "Spectral card"},
+        },
+    },
+    can_use = function(self, card)
+        if card.edition then
+            if card.edition.negative then
+                return G.consumeables.config.card_limit > #G.consumeables.cards
+            end
+        else 
+            return G.consumeables.config.card_limit >= #G.consumeables.cards
+        end
+        end,
+    use = function(self, _card, area, copier)
+        local rand_val = pseudorandom(pseudoseed('entropy'))
+        if rand_val <= G.GAME.probabilities.normal / self.config.chance then
+            local card = create_card('Spectral', G.consumeables)
+            card:add_to_deck()
+            G.consumeables:emplace(card)
+        else
+            G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+                attention_text({
+                    text = localize('k_nope_ex'),
+                    scale = 1.3, 
+                    hold = 1.4,
+                    major = _card,
+                    backdrop_colour = G.C.SECONDARY_SET.Tarot,
+                    align = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and 'tm' or 'cm',
+                    offset = {x = 0, y = (G.STATE == G.STATES.TAROT_PACK or G.STATE == G.STATES.SPECTRAL_PACK) and -0.2 or 0},
+                    silent = true
+                    })
+                    G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.06*G.SETTINGS.GAMESPEED, blockable = false, blocking = false, func = function()
+                        play_sound('tarot2', 0.76, 0.4);return true end}))
+                    play_sound('tarot2', 1, 0.4)
+                    _card:juice_up(0.3, 0.5)
+            return true end }))
+        end
         return true
         end
 }
