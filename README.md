@@ -1,7 +1,5 @@
-<h1 style="font-size:30px"><b>Tarot+</b></h1>
-<h2 style="font-size:22px">
-<i>A Balatro modpack by <a href="https://github.com/nhhvhy">nhhvhy</a></i>
-</h2>
+<span style="font-size:30px;"><b>Tarot+</b></span>
+<span style="font-size:22px;"><i>A Balatro modpack by <a href="https://github.com/nhhvhy">nhhvhy</a></i></span>
 
 <hr>
 
@@ -9,17 +7,17 @@
 <p>Adds <b>10 new Tarot cards</b> to the game, including:</a></p>
 
 <ul>
-<li><h3 style="display:inline"><b>Fire</b></h3><br>
+<li><h3 style="display:inline"><b>Fire</b></h3>
 &nbsp;&nbsp;Gives an extra discard in the current round.
-<i style="font-size:10px; font-weight:300">&nbsp;&nbsp;&nbsp;Applies to the next round if not used in play</i></li><br>
+<i style="font-size:10px; font-weight:300">&nbsp;&nbsp;&nbsp;Applies to the next round if not used in play</i></li>
 
-<li><h3 style="display:inline"><b>Ice</b></h3><br>
+<li><h3 style="display:inline"><b>Ice</b></h3>
 &nbsp;&nbsp;Gives an extra hand in the current round.
-<i style="font-size:10px; font-weight:300">&nbsp;&nbsp;&nbsp;Applies to the next round if not used in play</i></li><br>
+<i style="font-size:10px; font-weight:300">&nbsp;&nbsp;&nbsp;Applies to the next round if not used in play</i></li>
 
-<li><h3 style="display:inline"><b>Ice</b></h3><br>
+<li><h3 style="display:inline"><b>Ice</b></h3>
 &nbsp;&nbsp;Duplicates a random playing card from your deck.
-</li><br>
+</li>
 </ul>
 
 <br>
