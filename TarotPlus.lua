@@ -3,7 +3,7 @@
 --- MOD_ID: TarotPlus
 --- PREFIX: tarotplus
 --- MOD_AUTHOR: [nhhvhy]
---- MOD_DESCRIPTION: more tarot = more better
+--- MOD_DESCRIPTION: more tarot == more better
 --- VERSION: 1.0
 ----------------------------------------------
 ------------MOD CODE -------------------------
@@ -81,6 +81,36 @@ SMODS.Consumable {
             }))
         end
     end
+}
+
+-- Fate Tarot
+SMODS.Consumable {
+    atlas = 'Consumables',
+    key = 'fate',
+    set = 'Tarot',
+    discovered = true,
+    pos = { x = 0, y = 0 },
+    loc_txt = {
+        ['en-us'] = {
+            name = 'Fate',
+            text = { "Duplicates a random",
+                     "playing card in deck" },
+        },
+    },
+    config = { },
+    can_use = function(self, card)
+        return true
+    end,
+    use = function(self, _card, area, copier)
+        G.E_MANAGER:add_event(Event({
+            func = function()
+                create_playing_card({
+                    front = pseudorandom_element(G.P_CARDS), 
+                    center = G.P_CENTERS.c_base}, G.deck, nil, nil, {G.C.SECONDARY_SET.Enhanced})
+                return true
+            end}))
+        return true
+        end
 }
 ----------------------------------------------
 ------------MOD CODE END----------------------
