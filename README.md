@@ -1,7 +1,7 @@
-<span style="font-size:30px;"><b>Tarot+</b></span>
+<span style="font-size:30px;"><b>Tarot+</b></span><br>
 <span style="font-size:22px;"><i>A Balatro modpack by <a href="https://github.com/nhhvhy">nhhvhy</a></i></span>
 
-<hr><br>
+<hr>
 
 <h2 style="display:inline"><i><u>About</u></i></h2>
 <p>Adds <b>10 new Tarot cards</b> to the game, including:</a></p>
