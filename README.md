@@ -30,6 +30,6 @@
 <p>This mod utilizes the <b>Steamodded</b> library, installation instructions can be found <a href="https://github.com/Steamopollys/Steamodded"><b>here.</b></a></p><br>
 
 <h2 style="display:inline"><i><u>License</u></i></h2>
-<p>This repository is covered under the <b>MIT License.</b> library, installation instructions can be found <a href="https://github.com/Steamopollys/Steamodded"><b>here.</b></a></p>
+<p>This repository is covered under the <b>MIT License.</b> For more information, see <a href="https://en.wikipedia.org/wiki/MIT_License"><b>this page.</b></a></p>
 
 
