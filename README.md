@@ -1,7 +1,7 @@
-<p style="font-size:30px"><b>Tarot+</b></p>
-<p style="font-size:22px">
+<h1 style="font-size:30px"><b>Tarot+</b></h1>
+<h2 style="font-size:22px">
 <i>A Balatro modpack by <a href="https://github.com/nhhvhy">nhhvhy</a></i>
-</p>
+</h2>
 
 <hr>
 
