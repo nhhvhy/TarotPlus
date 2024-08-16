@@ -22,6 +22,10 @@
 <li><h3 style="display:inline"><b>Entropy</b></h3>
 &nbsp;&nbsp;1 in 5 chance to create a random Spectral card when used.
 </li>
+
+<li><h3 style="display:inline"><b>The Philosopher</b></h3>
+&nbsp;&nbsp;Upgrades most played poker hand.
+</li>
 </ul>
 
 <br>
