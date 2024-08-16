@@ -1,7 +1,0 @@
--- The way you do some things is the way you do all things
-
-info_queue:
-    used to show the 'tooltips' when hovering next to a card (steel/glass/negative description etc.)
-
-'mod_conv' will force a change on a card(s) when specified in the 'config' field
-    for example, config = { mod_conv = 'm_steel', max_highlighted = 1 } will allow 1 card to become steel

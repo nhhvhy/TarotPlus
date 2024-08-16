@@ -169,5 +169,46 @@ SMODS.Consumable {
         return true
         end
 }
+
+-- Philosopher Tarot
+SMODS.Consumable {
+    atlas = 'Consumables',
+    key = 'philosopher',
+    set = 'Tarot',
+    discovered = true,
+    pos = { x = 0, y = 0 },
+    edition = {negative = false},
+    loc_vars = function(self, card)
+        return {vars = {G.GAME.probabilities.normal, self.config.chance}}
+    end,
+    loc_txt = {
+        ['en-us'] = {
+            name = 'The Philosopher',
+            text = {"Upgrades most",
+                    "played hand"}
+        },
+    },
+    can_use = function(self, card)
+        return true
+        end,
+
+    use = function(self, card, area, copier)
+        local _handnames, _played, _order = {"High Card"}, -1, 100
+        for k, v in pairs(G.GAME.hands) do
+            if v.played > _played then
+                _played = v.played
+                _handnames = {k}
+            elseif v.played == _played then
+                table.insert(_handnames, k)
+            end
+        end
+
+        local _handname = pseudorandom_element(_handnames, pseudoseed('random_poker_hand'))
+        update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname=localize(_handname, 'poker_hands'),chips = G.GAME.hands[_handname].chips, mult = G.GAME.hands[_handname].mult, level=G.GAME.hands[_handname].level})
+        level_up_hand(card, _handname, false)
+        update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
+        end
+}
+
 ----------------------------------------------
 ------------MOD CODE END----------------------
