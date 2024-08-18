@@ -177,10 +177,6 @@ SMODS.Consumable {
     set = 'Tarot',
     discovered = true,
     pos = { x = 0, y = 0 },
-    edition = {negative = false},
-    loc_vars = function(self, card)
-        return {vars = {G.GAME.probabilities.normal, self.config.chance}}
-    end,
     loc_txt = {
         ['en-us'] = {
             name = 'The Philosopher',
@@ -208,6 +204,52 @@ SMODS.Consumable {
         level_up_hand(card, _handname, false)
         update_hand_text({sound = 'button', volume = 0.7, pitch = 1.1, delay = 0}, {mult = 0, chips = 0, handname = '', level = ''})
         end
+}
+
+-- Nomad Tarot
+SMODS.Consumable {
+    atlas = 'Consumables',
+    key = 'nomad',
+    set = 'Tarot',
+    discovered = true,
+    pos = { x = 0, y = 0 },
+    config = {extra = 2},
+    loc_vars = function(self, card)
+        local unplayed = 0
+        for k, v in pairs(G.GAME.hands) do
+            if v.played == 0 and v.visible == true then
+                unplayed = unplayed + 1
+            end
+        end
+        return {vars = {unplayed*self.config.extra}}
+    end,
+    loc_txt = {
+        ['en-us'] = {
+            name = 'The Nomad',
+            text = {"Gives {C:money}2${} per",
+                    "unplayed poker hand",
+                    "{C:inactive}(Currently {C:money}$#1#{C:inactive})"}
+        },
+    },
+    can_use = function(self, card)
+        return true
+        end,
+
+    use = function(self, card, area, copier)
+        local unplayed = 0
+        for k, v in pairs(G.GAME.hands) do
+            if v.played == 0 and v.visible == true then
+                unplayed = unplayed + 1
+            end
+        end
+
+        G.E_MANAGER:add_event(Event({trigger = 'after', delay = 0.4, func = function()
+            play_sound('timpani')
+            card:juice_up(0.3, 0.5)
+            ease_dollars(unplayed * self.config.extra, true)
+            return true end }))
+        delay(0.6)
+    end
 }
 
 ----------------------------------------------
