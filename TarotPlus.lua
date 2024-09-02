@@ -11,8 +11,31 @@
 local mod_path = '' .. SMODS.current_mod.path
 SMODS.Atlas { key = 'Consumables', path = 'tarot.png', px = 71, py = 95 }
 
-function enhanceToCenter(enhance_str)
-    local centers = {
+-- !! Doesn't include negative, use only for playing cards !!
+PCARD_MODS = {
+    'foil', 'holo', 'polychrome',
+    'Red', 'Blue', 'Gold', 'Purple',
+    'Bonus', 'Mult', 'Wild Card', 'Glass Card',
+    'Steel Card', 'Stone Card', 'Gold Card', 'Lucky Card'
+}
+
+PCARD_MOD_TYPE = {
+    ['foil'] = 'Edition', ['holo'] = 'Edition', ['polychrome'] = 'Edition',
+    ['Red'] = 'Seal', ['Blue'] = 'Seal',
+    ['Gold'] = 'Seal', ['Purple'] = 'Seal',
+    ['Bonus'] = 'Enhancement', ['Mult'] = 'Enhancement',
+    ['Wild Card'] = 'Enhancement', ['Glass Card'] = 'Enhancement',
+    ['Steel Card'] = 'Enhancement', ['Stone Card'] = 'Enhancement',
+    ['Gold Card'] = 'Enhancement', ['Lucky Card'] = 'Enhancement'
+}
+
+PCARD_EDITIONS = {
+    ['foil'] = {foil = true},
+    ['holo'] = {holo = true}, 
+    ['polychrome'] = {polychrome = true},
+}
+
+PCARD_CENTERS = {
     ["Bonus"] = G.P_CENTERS.m_bonus,
     ["Mult"] = G.P_CENTERS.m_mult,
     ["Wild Card"] = G.P_CENTERS.m_wild,
@@ -21,9 +44,37 @@ function enhanceToCenter(enhance_str)
     ["Stone Card"] = G.P_CENTERS.m_stone,
     ["Gold Card"] = G.P_CENTERS.m_gold,
     ["Lucky Card"] = G.P_CENTERS.m_lucky,
-    }
+}
 
-    for k, v in pairs(centers) do
+-- Returns a random !!playing card!! modification
+function RandMod()
+    local rand = pseudorandom(pseudoseed('RandMod'))
+    rand = math.floor(rand * 15) + 1
+    if rand == 16 then
+        rand = 15
+    end
+
+    return PCARD_MODS[rand]
+end
+
+function AddMod(card, mod)
+    mod = mod or RandMod()
+    if PCARD_MOD_TYPE[mod] == 'Edition' then
+        card:set_edition(PCARD_EDITIONS[mod], true)
+
+    elseif PCARD_MOD_TYPE[mod] == 'Seal' then
+        card:set_seal(mod, true)
+
+    elseif PCARD_MOD_TYPE[mod] == 'Enhancement' then
+        card:set_ability(PCARD_CENTERS[mod], nil, false)
+    else
+        return false
+    end
+    return true
+end
+
+function EnhanceToCenter(enhance_str)
+    for k, v in pairs(PCARD_CENTERS) do
         if k == enhance_str.ability.name then
             return v
         end
@@ -286,8 +337,8 @@ SMODS.Consumable {
         ['en-us'] = {
             name = 'The Mirror',
             text = {"Select {C:attention}2{} cards.",
-                    "Left card gains right",
-                    "card modifications."
+                    "{C:attention}Left{} card gains {C:attention}right{}",
+                    "card {C:attention}modifications{}."
                     }
         },
     },
@@ -315,8 +366,8 @@ SMODS.Consumable {
             if G.hand.highlighted[2].edition then
             G.hand.highlighted[1]:set_edition(G.hand.highlighted[2].edition, true, true)
             end
-            if enhanceToCenter(G.hand.highlighted[2]) then
-               G.hand.highlighted[1]:set_ability(enhanceToCenter(G.hand.highlighted[2]), nil, false)
+            if EnhanceToCenter(G.hand.highlighted[2]) then
+               G.hand.highlighted[1]:set_ability(EnhanceToCenter(G.hand.highlighted[2]), nil, false)
             end
             return true end }))
 
@@ -330,6 +381,35 @@ SMODS.Consumable {
     end
 }
 
+-- Enigma Tarot
+-- TODO: Import card flip animation
+SMODS.Consumable {
+    atlas = 'Consumables',
+    key = 'enigma',
+    set = 'Tarot',
+    discovered = true,
+    pos = { x = 0, y = 0 },
+    loc_vars = function(self, card)
+    end,
+    loc_txt = {
+        ['en-us'] = {
+            name = 'The Enigma',
+            text = {"Adds a random",
+                    "modification to",
+                    "{C:attention}2{} selected cards"
+                    }
+        },
+    },
+    can_use = function(self, card)
+        return (0 < #G.hand.highlighted and #G.hand.highlighted <= 2)
+    end,
+
+    use = function(self, card, area, copier)
+        for i=1,#G.hand.highlighted do
+            AddMod(G.hand.highlighted[i])
+        end
+    end
+}
 
 ----------------------------------------------
 ------------MOD CODE END----------------------
