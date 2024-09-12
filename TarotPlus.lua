@@ -60,7 +60,7 @@ end
 function AddMod(card, mod)
     mod = mod or RandMod()
     if PCARD_MOD_TYPE[mod] == 'Edition' then
-        card:set_edition(PCARD_EDITIONS[mod], true)
+        card:set_edition(PCARD_EDITIONS[mod], true, true)
 
     elseif PCARD_MOD_TYPE[mod] == 'Seal' then
         card:set_seal(mod, true)
@@ -405,11 +405,42 @@ SMODS.Consumable {
     end,
 
     use = function(self, card, area, copier)
-        for i=1,#G.hand.highlighted do
-            AddMod(G.hand.highlighted[i])
+        -- Flip Cards
+        for i=1, #G.hand.highlighted do
+            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'before',
+            delay = 0.15,
+            func = function() G.hand.highlighted[i]:flip();play_sound('card1', percent);
+            return true end }))
         end
+        delay(0.2)
+
+        for i=1, #G.hand.highlighted do
+            -- AddMod(G.hand.highlighted[i])
+            G.E_MANAGER:add_event(Event({trigger = 'after',
+            delay = 0.15,
+            func = function() AddMod(G.hand.highlighted[i]);
+            return true end }))
+        end
+
+        -- Unflip Cards
+        for i=1, #G.hand.highlighted do
+            local percent = 0.85 + (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({trigger = 'after',
+            delay = 0.15,func = function() G.hand.highlighted[i]:flip();
+            play_sound('tarot2', percent, 0.6);
+            return true end }))
+        end
+
+        G.E_MANAGER:add_event(Event({trigger = 'after', 
+        delay = 0.2,
+        func = function() G.hand:unhighlight_all(); 
+        return true end }))
+        delay(0.5)
     end
 }
+
+
 
 ----------------------------------------------
 ------------MOD CODE END----------------------
