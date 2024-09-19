@@ -88,7 +88,7 @@ SMODS.Consumable {
     key = 'fire',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 0, y = 1 },
     loc_txt = {
         ['en-us'] = {
             name = 'Fire',
@@ -124,7 +124,7 @@ SMODS.Consumable {
     key = 'ice',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 1, y = 1 },
     loc_txt = {
         ['en-us'] = {
             name = 'Ice',
@@ -160,7 +160,7 @@ SMODS.Consumable {
     key = 'fate',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 1 },
     loc_txt = {
         ['en-us'] = {
             name = 'Fate',
@@ -247,7 +247,7 @@ SMODS.Consumable {
     key = 'philosopher',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 3, y = 0 },
     loc_txt = {
         ['en-us'] = {
             name = 'The Philosopher',
@@ -283,7 +283,7 @@ SMODS.Consumable {
     key = 'nomad',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 3, y = 1 },
     config = {extra = 2},
     loc_vars = function(self, card)
         local unplayed = 0
@@ -329,7 +329,7 @@ SMODS.Consumable {
     key = 'mirror',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 1, y = 0 },
     config = {extra = 2},
     loc_vars = function(self, card)
     end,
@@ -382,13 +382,12 @@ SMODS.Consumable {
 }
 
 -- Enigma Tarot
--- TODO: Import card flip animation
 SMODS.Consumable {
     atlas = 'Consumables',
     key = 'enigma',
     set = 'Tarot',
     discovered = true,
-    pos = { x = 0, y = 0 },
+    pos = { x = 2, y = 0 },
     loc_vars = function(self, card)
     end,
     loc_txt = {
@@ -439,8 +438,6 @@ SMODS.Consumable {
         delay(0.5)
     end
 }
-
-
 
 ----------------------------------------------
 ------------MOD CODE END----------------------
