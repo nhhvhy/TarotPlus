@@ -4,7 +4,7 @@
 <hr>
 
 <h2 style="display:inline"><i><u>About</u></i></h2>
-<p>Adds <b>10 new Tarot cards</b> to the game, including:</a></p>
+<p>Adds <b>8 new Tarot cards</b> to the game, including:</a></p>
 
 <ul>
 <li><h3 style="display:inline"><b>Fire</b></h3>
@@ -25,6 +25,22 @@
 
 <li><h3 style="display:inline"><b>The Philosopher</b></h3>
 &nbsp;&nbsp;Upgrades most played poker hand.
+</li>
+
+<li><h3 style="display:inline"><b>The Nomad</b></h3>
+&nbsp;&nbsp;Gives 2$ per unplayed poker hand.
+</li>
+
+<li><h3 style="display:inline"><b>The Mirror</b></h3>
+&nbsp;&nbsp;Adds modifications from one playing card to another.
+</li>
+
+<li><h3 style="display:inline"><b>The Mirror</b></h3>
+&nbsp;&nbsp;Copies modifications from one playing card to another.
+</li>
+
+<li><h3 style="display:inline"><b>The Enigma</b></h3>
+&nbsp;&nbsp;Adds a random modification to 2 selected cards.
 </li>
 </ul>
 
