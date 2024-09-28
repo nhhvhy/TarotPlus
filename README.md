@@ -32,10 +32,6 @@
 </li>
 
 <li><h3 style="display:inline"><b>The Mirror</b></h3>
-&nbsp;&nbsp;Adds modifications from one playing card to another.
-</li>
-
-<li><h3 style="display:inline"><b>The Mirror</b></h3>
 &nbsp;&nbsp;Copies modifications from one playing card to another.
 </li>
 
